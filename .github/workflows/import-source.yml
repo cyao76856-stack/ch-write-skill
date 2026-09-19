@@ -2,7 +2,7 @@ name: Import source
 on:
   push:
     paths:
-      - source.zip
+      - ch-write-skill-source.zip
   workflow_dispatch:
 permissions:
   contents: write
@@ -14,11 +14,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Unpack archive
         run: |
-          git show HEAD:source.zip > /tmp/source.zip
+          git show HEAD:ch-write-skill-source.zip > /tmp/source.zip
           test -s /tmp/source.zip
           unzip -q /tmp/source.zip -d .unpacked
           cp -a .unpacked/. .
-          rm -rf .unpacked source.zip
+          rm -rf .unpacked ch-write-skill-source.zip
       - name: Commit imported files
         run: |
           git config user.name "github-actions[bot]"
