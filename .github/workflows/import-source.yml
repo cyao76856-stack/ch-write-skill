@@ -14,7 +14,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Unpack archive
         run: |
-          unzip -q source.zip -d .unpacked
+          curl -L --fail --retry 3 -o /tmp/source.zip "https://raw.githubusercontent.com/cyao76856-stack/ch-write-skill/${GITHUB_SHA}/source.zip"
+          unzip -q /tmp/source.zip -d .unpacked
           cp -a .unpacked/. .
           rm -rf .unpacked source.zip
       - name: Commit imported files
