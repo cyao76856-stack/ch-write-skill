@@ -1,0 +1,27 @@
+name: Import source
+on:
+  push:
+    paths:
+      - source.zip
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    if: github.event_name == 'workflow_dispatch' || github.event.head_commit.message != 'Import ch-write-skill source'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack archive
+        run: |
+          unzip -q source.zip -d .unpacked
+          cp -a .unpacked/. .
+          rm -rf .unpacked source.zip
+      - name: Commit imported files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Import ch-write-skill source"
+          git push
