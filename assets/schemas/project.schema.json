@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "project.schema.json",
+  "title": "CH-Write Project",
+  "type": "object",
+  "properties": {
+    "schema_version": { "type": "integer", "minimum": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "master_formats": {
+      "type": "object",
+      "properties": {
+        "lists": { "const": "json" },
+        "script": { "type": "string", "enum": ["markdown", "fountain"] }
+      },
+      "required": ["lists", "script"],
+      "additionalProperties": true
+    },
+    "interaction_profile": {
+      "type": "object",
+      "properties": {
+        "preset": {
+          "type": "string",
+          "enum": ["deep", "balanced", "fast"]
+        },
+        "question_depth": {
+          "type": "string",
+          "enum": ["full", "focused", "minimal"]
+        },
+        "confirmation_granularity": {
+          "type": "string",
+          "enum": ["individual", "batch", "phase"]
+        },
+        "version_cadence": {
+          "type": "string",
+          "enum": ["scene", "act", "batch"]
+        },
+        "output_detail": {
+          "type": "string",
+          "enum": ["brief", "standard", "detailed"]
+        }
+      },
+      "required": [
+        "preset",
+        "question_depth",
+        "confirmation_granularity",
+        "version_cadence",
+        "output_detail"
+      ],
+      "additionalProperties": true
+    },
+    "active_version": {
+      "type": ["string", "null"],
+      "pattern": "^v[0-9]{3,}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "name",
+    "created_at",
+    "master_formats",
+    "interaction_profile",
+    "active_version"
+  ],
+  "additionalProperties": true
+}

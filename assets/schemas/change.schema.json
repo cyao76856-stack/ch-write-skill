@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "change.schema.json",
+  "title": "CH-Write Change",
+  "type": "object",
+  "properties": {
+    "change_id": { "type": "string", "pattern": "^CHG-[0-9]{4,}$" },
+    "type": { "type": "string", "minLength": 1 },
+    "location": { "type": "string" },
+    "original": { "type": "string" },
+    "problem": { "type": "string" },
+    "proposal": { "type": "string" },
+    "expected_effect": { "type": "string" },
+    "related_objects": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "impact": {
+      "type": ["string", "array", "object"]
+    },
+    "confirmation_status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "rejected", "withdrawn", "superseded", "stale", "waived"]
+    },
+    "execution_status": {
+      "type": "string",
+      "enum": ["pending", "applied", "verified", "failed", "skipped", "superseded"]
+    },
+    "followups": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "provenance": {
+      "type": "string",
+      "enum": ["source-derived", "inferred", "proposed", "imported", "unknown"]
+    },
+    "author_statement": { "type": "string" },
+    "version": { "type": ["string", "null"] }
+  },
+  "required": [
+    "change_id",
+    "type",
+    "location",
+    "original",
+    "problem",
+    "proposal",
+    "expected_effect",
+    "related_objects",
+    "impact",
+    "confirmation_status",
+    "execution_status",
+    "followups"
+  ],
+  "additionalProperties": true
+}

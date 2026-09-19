@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "version.schema.json",
+  "title": "CH-Write Version Manifest",
+  "type": "object",
+  "properties": {
+    "version": { "type": "string", "pattern": "^v[0-9]{3,}$" },
+    "parent": {
+      "type": ["string", "null"],
+      "pattern": "^v[0-9]{3,}$"
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "confirmed_batch": { "type": "string", "minLength": 1 },
+    "objects": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "pattern": "^rev-[0-9]{4,}$" }
+    },
+    "removed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "stale": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          { "type": "string" },
+          { "type": "object" }
+        ]
+      }
+    },
+    "source_versions": { "type": "object" },
+    "exports": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          { "type": "string" },
+          { "type": "object" }
+        ]
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "confirmed", "immutable", "tampered"]
+    }
+  },
+  "required": [
+    "version",
+    "parent",
+    "created_at",
+    "confirmed_batch",
+    "objects",
+    "removed",
+    "stale",
+    "source_versions"
+  ],
+  "additionalProperties": true
+}

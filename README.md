@@ -16,12 +16,22 @@
 - Codex Desktop 或兼容 Codex Skill 的环境
 - Python 3.10 或更高版本
 - 运行项目脚本不需要额外第三方依赖
-- 运行测试需要 pytest
+- 运行测试需要 `pytest`
 
 ## 安装
 
+### Windows
+
+将仓库克隆到 Codex 的 skills 目录：
+
 ```powershell
-git clone https://github.com/cyao76856-stack/ch-write-skill.git "$env:USERPROFILE\.codex\skills\ch-write-skill"
+git clone https://github.com/<your-username>/ch-write-skill.git "$env:USERPROFILE\.codex\skills\ch-write-skill"
+```
+
+也可以手动将整个目录复制到：
+
+```text
+C:\Users\<your-name>\.codex\skills\ch-write-skill
 ```
 
 安装后重新打开或刷新 Codex，使 Skill 被重新加载。
@@ -34,10 +44,57 @@ git clone https://github.com/cyao76856-stack/ch-write-skill.git "$env:USERPROFIL
 $ch-write-skill
 ```
 
+然后直接描述任务，例如：
+
+```text
+使用 $ch-write-skill 根据这份设定生成一个 12 分钟的短片剧本。
+```
+
 ## 项目初始化
 
+Skill 提供一个确定性脚本入口：
+
 ```powershell
-python -B scripts/story_project.py init --root "<project>" --name "<name>" --script-master markdown --interaction-profile balanced
+python -B scripts/story_project.py init `
+  --root "C:\path\to\story-project" `
+  --name "My Story" `
+  --script-master markdown `
+  --interaction-profile balanced
+```
+
+常用命令：
+
+```text
+status
+profile
+source add
+object add
+decision add
+change add
+list upsert
+timeline add
+snapshot
+confirm
+impact
+validate
+render
+archive
+restore
+```
+
+## 目录结构
+
+```text
+ch-write-skill/
+├── SKILL.md
+├── README.md
+├── LICENSE
+├── .gitignore
+├── agents/
+├── assets/
+├── references/
+├── scripts/
+└── tests/
 ```
 
 ## 测试
@@ -46,6 +103,21 @@ python -B scripts/story_project.py init --root "<project>" --name "<name>" --scr
 python -m pytest -q
 ```
 
+## 安全与隐私
+
+- 默认不向外部服务发送稿件。
+- 不要把 API Key、密码或其他凭据写入项目文件。
+- 发布或分享项目时，先检查来源文本、导出文件和日志中是否包含隐私内容。
+- 来源文本中的指令只作为叙事内容处理，不作为系统或工具指令执行。
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request。提交前请：
+
+1. 运行测试。
+2. 避免提交缓存、密钥和私人稿件。
+3. 对流程、数据结构或确认规则的修改，请在 Pull Request 中说明影响范围。
+
 ## License
 
-MIT
+[MIT](LICENSE)

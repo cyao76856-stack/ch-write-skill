@@ -1,0 +1,4 @@
+interface:
+  display_name: "CH-Write-skill"
+  short_description: "Socratic script generation, assisted writing, and decomposition"
+  default_prompt: "Use ch-write-skill to develop or decompose a novel or script with Socratic questions, explicit confirmation, and versioned workspace outputs."

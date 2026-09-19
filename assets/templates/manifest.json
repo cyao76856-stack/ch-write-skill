@@ -1,0 +1,11 @@
+{
+  "version": "v001",
+  "parent": null,
+  "created_at": "{{created_at}}",
+  "confirmed_batch": "{{batch_id}}",
+  "objects": {},
+  "removed": [],
+  "stale": [],
+  "source_versions": {},
+  "status": "immutable"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "name": "{{name}}",
+  "created_at": "{{created_at}}",
+  "master_formats": { "lists": "json", "script": "markdown" },
+  "interaction_profile": {
+    "preset": "balanced",
+    "question_depth": "focused",
+    "confirmation_granularity": "batch",
+    "version_cadence": "act",
+    "output_detail": "standard"
+  },
+  "active_version": null
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "decision.schema.json",
+  "title": "CH-Write Decision",
+  "type": "object",
+  "properties": {
+    "decision_id": { "type": "string", "pattern": "^DEC-[0-9]{4,}$" },
+    "title": { "type": "string", "minLength": 1 },
+    "type": { "type": "string" },
+    "content": { "type": "string" },
+    "main_reason": { "type": "string" },
+    "secondary_reasons": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "direct_purpose": { "type": "string" },
+    "expected_effect": { "type": "string" },
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "rejected_reason": { "type": "string" }
+        },
+        "required": ["text", "rejected_reason"],
+        "additionalProperties": true
+      }
+    },
+    "rejection_reasons": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "affected_objects": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "canon_items": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "author_statement": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "rejected", "withdrawn", "superseded", "stale", "waived"]
+    },
+    "provenance": {
+      "type": "string",
+      "enum": ["source-derived", "inferred", "proposed", "imported", "unknown"]
+    },
+    "version": {
+      "type": ["string", "null"],
+      "pattern": "^v[0-9]{3,}$"
+    },
+    "supersedes": {
+      "type": ["string", "null"],
+      "pattern": "^DEC-[0-9]{4,}$"
+    },
+    "superseded_by": {
+      "type": ["string", "null"],
+      "pattern": "^DEC-[0-9]{4,}$"
+    },
+    "batch_id": { "type": ["string", "null"] },
+    "confirmed_at": { "type": ["string", "null"], "format": "date-time" }
+  },
+  "required": [
+    "decision_id",
+    "title",
+    "type",
+    "content",
+    "secondary_reasons",
+    "main_reason",
+    "direct_purpose",
+    "expected_effect",
+    "alternatives",
+    "rejection_reasons",
+    "dependencies",
+    "affected_objects",
+    "canon_items",
+    "author_statement",
+    "status",
+    "version",
+    "supersedes",
+    "superseded_by"
+  ],
+  "additionalProperties": true
+}
