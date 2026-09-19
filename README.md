@@ -25,7 +25,7 @@
 将仓库克隆到 Codex 的 skills 目录：
 
 ```powershell
-git clone https://github.com/<your-username>/ch-write-skill.git "$env:USERPROFILE\.codex\skills\ch-write-skill"
+git clone https://github.com/cyao76856-stack/ch-write-skill.git "$env:USERPROFILE\.codex\skills\ch-write-skill"
 ```
 
 也可以手动将整个目录复制到：
